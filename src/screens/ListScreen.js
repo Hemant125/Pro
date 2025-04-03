@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Icon from "react-native-vector-icons/EvilIcons";
 import Entypo from "react-native-vector-icons/Entypo";
 import { fetchItems, deleteItemFromDB } from '../database/database';
-import { setItems, deleteItem } from '../redux/itemSlice';
+import { setItems } from '../redux/itemSlice';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const ListScreen = ({ navigation }) => {
@@ -29,7 +29,7 @@ const ListScreen = ({ navigation }) => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={() => navigation.navigate('Add New Item')} style={styles.headerButton}>
-          <Icon name="plus" size={hp(4.3)} color="#007bff" />
+          <Icon name="plus" size={hp(3)} color="#007bff" />
         </TouchableOpacity>
       ),
     });
@@ -132,7 +132,14 @@ const styles = StyleSheet.create({
     gap: wp(3.2),
   },
   headerButton: {
-    marginRight: wp(6),
+    
+
+   
+    height: '100%',  // 
+    justifyContent: 'center',  
+    alignItems: 'center',  
+    paddingHorizontal: wp(2), 
+    marginRight: wp(5),
   },
 });
 

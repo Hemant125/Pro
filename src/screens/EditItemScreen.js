@@ -3,8 +3,8 @@
 import React, { useState ,useEffect} from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { fetchItems, updateItemInDB } from '../database/database';
-import { setItems, updateItem } from '../redux/itemSlice';
+import {  updateItemInDB } from '../database/database';
+import {  updateItem } from '../redux/itemSlice';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const EditItemScreen = ({ navigation, route }) => {
@@ -22,11 +22,11 @@ const EditItemScreen = ({ navigation, route }) => {
 
 
 const handleUpdate = () => {
-  console.log("handle update is called");
-  console.log("Attempting to update item:", existingItem);
+//  console.log("handle update is called");
+  //console.log("Attempting  update item:", existingItem);
 
   if (!existingItem || !existingItem.id) {
-      console.log("Error: Item has no valid ID");
+    
       Alert.alert("Error", "Invalid item selected for update.");
       return;
   }
@@ -34,8 +34,7 @@ const handleUpdate = () => {
   const trimmedName = name?.trim() || "";
   const trimmedDescription = description?.trim() || "";
 
-  console.log("Trimmed Name:", trimmedName);
-  console.log("Trimmed Description:", trimmedDescription);
+  
 
   
 
