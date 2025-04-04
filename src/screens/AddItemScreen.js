@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addItemToDB } from '../database/database';
 import { addItem } from '../redux/itemSlice';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const AddItemScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ const AddItemScreen = ({ navigation }) => {
   };
 
   return (
+    <SafeAreaView style={styles.safeContainer} edges={['top', 'left', 'right']}>
     <View style={styles.container}>
       <Text style={styles.header}>Add New Item</Text>
       <TextInput
@@ -77,15 +79,21 @@ const AddItemScreen = ({ navigation }) => {
         <Text style={styles.buttonText}>Save</Text>
       </TouchableOpacity>
     </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+
+  safeContainer: {
+    flex: 1,
+    backgroundColor: '#f8f9fa',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f8f9fa',
+    
     padding: wp(5),
   },
   header: {

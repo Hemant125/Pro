@@ -6,6 +6,7 @@ import Entypo from "react-native-vector-icons/Entypo";
 import { fetchItems, deleteItemFromDB } from '../database/database';
 import { setItems } from '../redux/itemSlice';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ListScreen = ({ navigation }) => {
   const items = useSelector(state => state.items);
@@ -36,7 +37,8 @@ const ListScreen = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.safeContainer} edges={['top', 'left', 'right']}>
+       <View style={styles.container}>
       {items.length === 0 ? (
         <View style={styles.emptyContainer}>
           <Entypo name="block" size={hp(15)} color="#000" />
@@ -73,14 +75,20 @@ const ListScreen = ({ navigation }) => {
         />
       )}
     </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+
+  safeContainer: {
+    flex: 1,
+    backgroundColor: '#f8f9fa',
+  },
   container: {
     flex: 1,
     padding: wp(5),
-    backgroundColor: '#f8f9fa',
+    
   },
   emptyContainer: {
     flex: 1,
@@ -135,7 +143,7 @@ const styles = StyleSheet.create({
     
 
    
-    height: '100%',  // 
+    height: '100%',  
     justifyContent: 'center',  
     alignItems: 'center',  
     paddingHorizontal: wp(2), 

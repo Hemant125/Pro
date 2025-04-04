@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import {  updateItemInDB } from '../database/database';
 import {  updateItem } from '../redux/itemSlice';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const EditItemScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
@@ -14,10 +15,7 @@ const EditItemScreen = ({ navigation, route }) => {
   const [name, setName] = useState(existingItem?.name || '');
   const [description, setDescription] = useState(existingItem?.description || '');
 
-  useEffect(() => {
-   // console.log("Updated Name:", name);
- //   console.log("Updated Description:", description);
-  }, [name,description]); 
+  
  
 
 
@@ -85,6 +83,7 @@ const handleUpdate = () => {
   
   
   return (
+    <SafeAreaView style={styles.safeContainer} edges={['top', 'left', 'right']}>
     <View style={styles.container}>
       <Text style={styles.header}>Edit Item</Text>
       <TextInput
@@ -104,15 +103,22 @@ const handleUpdate = () => {
         <Text style={styles.buttonText}>Update</Text>
       </TouchableOpacity>
     </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+
+  safeContainer: {
+    flex: 1,
+    backgroundColor: '#f8f9fa',
+  },
+
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f8f9fa',
+    
     padding: wp(5),
   },
   header: {
